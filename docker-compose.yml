@@ -1,0 +1,56 @@
+services:
+  openclaw-gateway:
+    image: ghcr.io/openclaw/openclaw:latest  # pin to a specific version in production
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 2G
+    ports:
+      - "${OPENCLAW_GATEWAY_PORT:-18789}:18789"
+      - "${OPENCLAW_BRIDGE_PORT:-18790}:18790"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      - OPENCLAW_GATEWAY_TOKEN=${OPENCLAW_GATEWAY_TOKEN}
+      - OPENCLAW_GATEWAY_BIND=${OPENCLAW_GATEWAY_BIND:-lan}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+    volumes:
+      - ./data/config:/home/node/.openclaw
+      - ./data/workspace:/home/node/.openclaw/workspace
+    init: true
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:18789 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    command:
+      [
+        "node",
+        "dist/index.js",
+        "gateway",
+        "--bind",
+        "${OPENCLAW_GATEWAY_BIND:-lan}",
+        "--port",
+        "18789",
+        "--allow-unconfigured",
+      ]
+    networks:
+      - openclaw-network
+
+# Each compose project gets its own isolated bridge network.
+# When running multiple tenants, use separate project names (docker compose -p tenant-XXX)
+# so each tenant gets its own network and cannot reach other tenants.
+networks:
+  openclaw-network:
+    driver: bridge

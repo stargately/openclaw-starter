@@ -1,0 +1,6 @@
+.env
+
+# Runtime state — keep only the config template
+data/config/*
+!data/config/openclaw.json
+data/workspace/
