@@ -1,0 +1,15 @@
+envVars:
+  - key: OPENCLAW_GATEWAY_TOKEN
+    generateValue: true
+    description: "Generate token: openssl rand -hex 32"
+  - key: OPENCLAW_GATEWAY_BIND
+    value: lan
+    description: "Network interface to bind to"
+  - key: OPENCLAW_GATEWAY_PORT
+    port: true
+    description: "Ports must be unique across all OpenClaw instances on the same machine"
+  - key: OPENCLAW_BRIDGE_PORT
+    port: true
+  - key: TELEGRAM_BOT_TOKEN
+    required: true
+    description: "Your Telegram bot token"

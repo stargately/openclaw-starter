@@ -4,3 +4,4 @@
 data/config/*
 !data/config/openclaw.json
 data/workspace/
+data/*
