@@ -1,3 +1,9 @@
+serviceDefaults:
+  type: docker-compose
+  repo: https://github.com/stargately/openclaw-starter
+  buildCommand: docker compose up -d --build
+  branch: main
+
 envVars:
   - key: OPENCLAW_GATEWAY_TOKEN
     generateValue: true
