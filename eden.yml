@@ -18,3 +18,9 @@ services:
       - key: TELEGRAM_BOT_TOKEN
         required: true
         description: "Your Telegram bot token"
+      - key: ANTHROPIC_BASE_URL
+        required: true
+        description: "Base URL for the Anthropic-compatible API"
+      - key: ANTHROPIC_API_KEY
+        required: true
+        description: "API key for the Anthropic-compatible API"
