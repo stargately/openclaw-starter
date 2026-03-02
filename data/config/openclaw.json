@@ -25,7 +25,7 @@
     "providers": {
       "blockeden": {
         "baseUrl": "${ANTHROPIC_BASE_URL}",
-        "apiKey": "${ANTHROPIC_API_KEY}",
+        "apiKey": "placeholder",
         "api": "anthropic-messages",
         "models": [
           {
