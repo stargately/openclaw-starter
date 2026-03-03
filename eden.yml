@@ -16,8 +16,7 @@ services:
       - key: OPENCLAW_BRIDGE_PORT
         port: true
       - key: TELEGRAM_BOT_TOKEN
-        required: true
-        description: "Your Telegram bot token"
+        description: "Optional: Your Telegram bot token (enable Telegram integration)"
       - key: ANTHROPIC_BASE_URL
         required: true
         description: "Base URL for the Anthropic-compatible API"
