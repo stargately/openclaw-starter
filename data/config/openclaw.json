@@ -45,6 +45,9 @@
       "mode": "token",
       "token": "${OPENCLAW_GATEWAY_TOKEN}"
     },
+    "controlUi": {
+      "allowedOrigins": ["https://*.onblockeden.xyz"]
+    },
     "port": 18789,
     "bind": "loopback",
     "tailscale": {
