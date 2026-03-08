@@ -1,6 +1,6 @@
 services:
   openclaw-gateway:
-    image: ghcr.io/openclaw/openclaw:latest  # pin to a specific version in production
+    image: ghcr.io/openclaw/openclaw:2026.3.2  # pin to a specific version in production
     restart: unless-stopped
     read_only: true
     tmpfs:
@@ -26,8 +26,8 @@ services:
       - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
       - ANTHROPIC_BASE_URL=${ANTHROPIC_BASE_URL}
     volumes:
-      - ./data/config:/home/node/.openclaw
-      - ./data/workspace:/home/node/.openclaw/workspace
+      - ${OPENCLAW_CONFIG_DIR:-./data/config}:/home/node/.openclaw
+      - ${OPENCLAW_WORKSPACE_DIR:-./data/workspace}:/home/node/.openclaw/workspace
     init: true
     healthcheck:
       test: ["CMD-SHELL", "wget --spider -q http://localhost:18789 || exit 1"]
