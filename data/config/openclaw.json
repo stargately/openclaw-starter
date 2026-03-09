@@ -13,10 +13,10 @@
       },
       "workspace": "/home/node/.openclaw/workspace",
       "model": {
-        "primary": "blockeden/claude-sonnet-4-5-20250929"
+        "primary": "blockeden/claude-3-5-haiku-20241022"
       },
       "models": {
-        "blockeden/claude-sonnet-4-5-20250929": {}
+        "blockeden/claude-3-5-haiku-20241022": {}
       }
     }
   },
@@ -24,13 +24,13 @@
     "mode": "merge",
     "providers": {
       "blockeden": {
-        "baseUrl": "https://api.blockeden.xyz/anthropic/hwCPbbafWhRyJD5Hea9q",
+        "baseUrl": "${ANTHROPIC_BASE_URL}",
         "apiKey": "placeholder",
         "api": "anthropic-messages",
         "models": [
           {
-            "id": "claude-sonnet-4-5-20250929",
-            "name": "claude-sonnet-4-5-20250929",
+            "id": "claude-3-5-haiku-20241022",
+            "name": "Claude 3 Haiku",
             "input": ["text", "image"],
             "contextWindow": 200000,
             "maxTokens": 4096
@@ -43,10 +43,10 @@
     "mode": "local",
     "auth": {
       "mode": "token",
-      "token": "3842c12bbc25b9398d39dc58b5985a99966c116de2dda35bc2e14f3fc631546a"
+      "token": "${OPENCLAW_GATEWAY_TOKEN}"
     },
     "controlUi": {
-      "allowedOrigins": ["*"]
+      "allowedOrigins": ["https://*.onblockeden.xyz"]
     },
     "port": 18789,
     "bind": "loopback",
@@ -73,7 +73,7 @@
   "channels": {
     "telegram": {
       "enabled": true,
-      "botToken": "8764239346:AAF3NNN1l1h380fUHJGO0n7KVt5wk_3zZs8",
+      "botToken": "${TELEGRAM_BOT_TOKEN}",
       "dmPolicy": "open",
       "allowFrom": ["*"]
     }
@@ -82,5 +82,15 @@
     "install": {
       "nodeManager": "npm"
     }
+  },
+  "wizard": {
+    "lastRunAt": "2026-02-09T04:11:55.343Z",
+    "lastRunVersion": "2026.2.6",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.2.6",
+    "lastTouchedAt": "2026-02-09T04:11:55.349Z"
   }
 }
