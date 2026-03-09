@@ -24,7 +24,7 @@
     "mode": "merge",
     "providers": {
       "blockeden": {
-        "baseUrl": "https://api.blockeden.xyz/anthropic/hwCPbbafWhRyJD5Hea9q",
+        "baseUrl": "${ANTHROPIC_BASE_URL}",
         "apiKey": "placeholder",
         "api": "anthropic-messages",
         "models": [
@@ -43,10 +43,10 @@
     "mode": "local",
     "auth": {
       "mode": "token",
-      "token": "3842c12bbc25b9398d39dc58b5985a99966c116de2dda35bc2e14f3fc631546a"
+      "token": "${OPENCLAW_GATEWAY_TOKEN}"
     },
     "controlUi": {
-      "allowedOrigins": ["*"]
+      "allowedOrigins": ["${OPENCLAW_GATEWAY_CONTROL_UI_ALLOWED_ORIGINS}"]
     },
     "port": 18789,
     "bind": "loopback",
@@ -73,7 +73,7 @@
   "channels": {
     "telegram": {
       "enabled": true,
-      "botToken": "8764239346:AAF3NNN1l1h380fUHJGO0n7KVt5wk_3zZs8",
+      "botToken": "${TELEGRAM_BOT_TOKEN}",
       "dmPolicy": "open",
       "allowFrom": ["*"]
     }
