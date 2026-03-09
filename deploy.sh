@@ -65,13 +65,13 @@ info "  Port     : $OPENCLAW_GATEWAY_PORT"
 
 CONFIG_FILE="$OPENCLAW_CONFIG_DIR/openclaw.json"
 
+# Auto-generate gateway token if unset
+OPENCLAW_GATEWAY_TOKEN="${OPENCLAW_GATEWAY_TOKEN:-$(openssl rand -hex 32)}"
+[[ ${#OPENCLAW_GATEWAY_TOKEN} -ge 16 ]] || fail "OPENCLAW_GATEWAY_TOKEN is too short (min 16 chars)"
+
 if [[ ! -f "$CONFIG_FILE" ]]; then
   # ── Step 2: Generate config from template ───────────────────────────────────
   info "Generating config..."
-
-  # Auto-generate gateway token if unset
-  OPENCLAW_GATEWAY_TOKEN="${OPENCLAW_GATEWAY_TOKEN:-$(openssl rand -hex 32)}"
-  [[ ${#OPENCLAW_GATEWAY_TOKEN} -ge 16 ]] || fail "OPENCLAW_GATEWAY_TOKEN is too short (min 16 chars)"
 
   TEMPLATE="$SCRIPT_DIR/template.json"
   [[ -f "$TEMPLATE" ]] || fail "template.json not found at $TEMPLATE"
@@ -110,7 +110,7 @@ fi
 info "Starting gateway..."
 
 export OPENCLAW_IMAGE
-[[ -n "${OPENCLAW_GATEWAY_TOKEN:-}" ]] && export OPENCLAW_GATEWAY_TOKEN
+export OPENCLAW_GATEWAY_TOKEN
 export OPENCLAW_CONFIG_DIR
 export OPENCLAW_WORKSPACE_DIR
 export OPENCLAW_GATEWAY_PORT
@@ -132,7 +132,7 @@ done
 echo ""
 echo -e "${GREEN}${BOLD}Deployment complete${RESET}"
 echo "  Gateway URL   : http://127.0.0.1:${OPENCLAW_GATEWAY_PORT}"
-[[ -n "${OPENCLAW_GATEWAY_TOKEN:-}" ]] && echo "  Gateway token : $OPENCLAW_GATEWAY_TOKEN"
+echo "  Gateway token : $OPENCLAW_GATEWAY_TOKEN"
 echo ""
 echo "Next steps:"
 echo "  Open http://127.0.0.1:${OPENCLAW_GATEWAY_PORT} and paste the token into Settings."
