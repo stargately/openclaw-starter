@@ -1,7 +1,7 @@
 services:
   - type: docker-compose
     repo: https://github.com/stargately/openclaw-starter
-    buildCommand: ./deploy.sh
+    buildCommand: bash ./deploy.sh
     branch: main
     envVars:
       - key: OPENCLAW_GATEWAY_TOKEN
